@@ -1,0 +1,23 @@
+#include <SPI.h>
+
+const int dataPin = 11;
+const int latchPin = 10;
+const int clockPin = 13;
+
+void setup() {
+    SPI.begin();
+    pinMode(latchPin, OUTPUT);
+}
+
+void loop() {
+    byte leds = 0b01010101;
+    digitalWrite(latchPin, LOW);
+    SPI.transfer(leds);
+    digitalWrite(latchPin, HIGH);
+    delay(1000);
+    leds = 0b10101010;
+    digitalWrite(latchPin, LOW);
+    SPI.transfer(leds);
+    digitalWrite(latchPin, HIGH);
+    delay(1000);
+}
